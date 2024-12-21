@@ -96,3 +96,20 @@ Compilers and interpreters has the same correlation as vegatables and fruits. On
 **Compiling**: Translate the current code to another language that will be executed. (It does not execute code, only translate)
 
 **Interpreting**: Read the code and execute as it runs
+
+CHALLENGES
+1. Pick an open source implementation of a language you like. Download the source code and poke around in it. Try to find the code that implements the scanner and parser. Are they hand-written, or generated using tools like Lex and Yacc? ( .l or .y files usually imply the latter.)
+
+Scanner + parser _deps/icu-small/source/common/rbbiscan.cpp_
+
+2. Just-in-time compilation tends to be the fastest way to implement a dynamically-typed language, but not all of them use it. What reasons are there to not JIT?
+
+Jit its a better choice if your software has a long lifetime, if it isnt the case you should opt for compile native code. This occurs because JIT request an extra step that is translate your code to a default language and then compile it to machine code. (Source)[https://stackoverflow.com/questions/13689435/why-not-jitjust-in-time-compilers-everywhere]
+
+Companies like apple do not allow use JIT for a security reason, when you allow translate your code during runtime this can generate potencial security risks (Souce)[https://www.reddit.com/r/EmulationOniOS/comments/1d8yhh9/why_no_jit/]
+
+3. Most Lisp implementations that compile to C also contain an interpreter that lets them execute Lisp code on the fly as well. Why?
+
+There's two main reasons:
+- Fallback if your machine does not have support for lisp compiler
+- Help in debug (instead you compile your entire application to test something you only runs it inside interpreter)
