@@ -4,22 +4,16 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.Scanner;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
-import java.nio.charset.Charset;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.List;
 
-import static sun.security.util.Event.report;
 
 public class Lox {
     static boolean hadError = false;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         if(args.length > 1) {
             System.out.println("Usage: jlox [script]");
             System.exit(64);
@@ -39,7 +33,10 @@ public class Lox {
 
     private static void run(String source) {
         Scanner scanner = new Scanner(source);
-//        List<Token> tokens = scanner.scanTokens(); TODO
+        List<Token> tokens = scanner.scanTokens();
+        for (Token token : tokens) {
+            System.out.println("Type: " + token.type + " lexeme: " + token.lexeme + " literal: " + token.literal + " line: " + token.line);
+        }
     }
 
     private static void runPrompt() throws IOException {
@@ -47,6 +44,7 @@ public class Lox {
         BufferedReader reader = new BufferedReader(input);
 
         for(;;) {
+            System.out.print("> ");
             String line = reader.readLine();
             if(line == null) break;
             run(line);
