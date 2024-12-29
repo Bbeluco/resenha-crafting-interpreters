@@ -42,3 +42,15 @@ So far we have the following phrase
 _"really" "crispy" "bacon" "with" **breakfast** "on the side"_
 
 You can see the breakfast must be replace for something else, basically in this example we show that using just a couple of rules we can cover almost an infinite possible ways to write.
+
+Challenges:
+
+_1. Earlier, I said that the | , * , and + forms we added to our grammar metasyntax were just syntactic sugar. Given this grammar:expr → expr ( "(" ( expr ( "," expr  * )? ")" | "." IDENTIFIER )+ | IDENTIFIER | NUMBER Produce a grammar that matches the same language but does not use any of that notational sugar._
+
+expr -> expr expr_list expr_list_tail expr_group | IDENTIFIER | NUMBER
+expr_list -> expr expr_list_tail
+expr_list_tail -> "," expr
+expr_group -> "(" expr ")"
+
+_Bonus: What kind of expression does this bit of grammar encode?_
+((123), "ABC") 123

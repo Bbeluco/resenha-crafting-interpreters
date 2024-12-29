@@ -1,5 +1,8 @@
 package org.lox;
 
+import org.challenges.chapter5.EvalAlgebra;
+import org.challenges.chapter5.ExprAlgebric;
+
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
@@ -14,22 +17,14 @@ public class Lox {
     static boolean hadError = false;
 
     public static void main(String[] args) throws IOException {
-        Expr expression = new Expr.Binary(
-                new Expr.Unary(
-                        new Token(TokenType.MINUS, "-", null, 1),
-                        new Expr.Literal(123)),
-                new Token(TokenType.STAR, "*", null, 1),
-                new Expr.Grouping(
-                        new Expr.Literal(45.67)));
-        System.out.println(new AstPrinter().print(expression));
-//        if(args.length > 1) {
-//            System.out.println("Usage: jlox [script]");
-//            System.exit(64);
-//        } else if(args.length == 1) {
-//            runFile(args[0]);
-//        } else {
-//            runPrompt();
-//        }
+        if(args.length > 1) {
+            System.out.println("Usage: jlox [script]");
+            System.exit(64);
+        } else if(args.length == 1) {
+            runFile(args[0]);
+        } else {
+            runPrompt();
+        }
     }
 
     private static void runFile(String file) throws IOException {
