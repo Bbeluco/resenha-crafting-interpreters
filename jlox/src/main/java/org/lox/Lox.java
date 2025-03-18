@@ -3,6 +3,7 @@ package org.lox;
 import org.challenges.chapter5.EvalAlgebra;
 import org.challenges.chapter5.ExprAlgebric;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
@@ -37,9 +38,13 @@ public class Lox {
     private static void run(String source) {
         Scanner scanner = new Scanner(source);
         List<Token> tokens = scanner.scanTokens();
-        for (Token token : tokens) {
-            System.out.println("Type: " + token.type + " lexeme: " + token.lexeme + " literal: " + token.literal + " line: " + token.line);
+        Parser parser = new Parser(tokens);
+        Expr expression = parser.parse();
+
+        if(hadError) {
+            return;
         }
+        System.out.println(new AstPrinter().print(expression));
     }
 
     private static void runPrompt() throws IOException {
@@ -58,6 +63,14 @@ public class Lox {
     //Error handling
     public static void error(int line, String message) {
         report(line, "", message);
+    }
+
+    public static void error(Token token, String message) {
+        if(token.type == TokenType.EOF) {
+            report(token.line, " at end", message);
+        } else {
+            report(token.line, " at '" + token.lexeme + "'", message);
+        }
     }
 
     private static void report(int line, String where, String message) {

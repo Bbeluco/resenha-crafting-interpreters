@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a7ac3ab2-eb16-4e30-9775-8b4aee879bd6" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/jlox/src/main/java/org/lox/Lox.java" beforeDir="false" afterPath="$PROJECT_DIR$/jlox/src/main/java/org/lox/Lox.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jlox/src/main/java/org/lox/Scanner.java" beforeDir="false" afterPath="$PROJECT_DIR$/jlox/src/main/java/org/lox/Scanner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
